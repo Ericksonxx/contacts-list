@@ -36,16 +36,19 @@ export default function SearchItem ({company, MAPS_KEY, supabase}) {
 
     return(
         <div key={company.id} className="bg-gray-800 p-4 mb-4 w-full">
-            <div className="text-xl">{company.name}</div>
-            <div className="text-sm">{company.formatted_address}</div>
-            <button onClick={() => addContact()}>Add Contact</button>
+            <div className="text-xl font-semibold">{company.name}</div>
+            <div className="text-xs text-gray-300">{company.formatted_address}</div>
             <div className="mt-6">
-                {details.formatted_phone_number ? 
-                    <div className="text-lg">{details.formatted_phone_number}</div> 
+              <div className="text-sm text-gray-300">
+              {details.formatted_phone_number ? 
+                    <p className="text-lg">{details.formatted_phone_number}</p> 
                 : null}
                 {details.website ? <div className="text-lg">
                     <a href={details.website} target="_blank">Website</a></div> : null}
+              </div>
+
           </div>
+          <button className="bg-blue-600 px-2 rounded-full text-sm font-semibold mt-6 w-full" onClick={() => addContact()}>+ ADD TO CONTACTS</button>
     </div>
     )
 }
