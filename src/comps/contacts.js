@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DeletePopup from "./delete-popup";
+
 
 export default function Contacts({ supabase }) {
   const [contacts, setContacts] = useState([]);
@@ -11,7 +11,6 @@ export default function Contacts({ supabase }) {
 
   const getContacts = async () => {
     let { data: contacts, error } = await supabase.from('contacts').select('*');
-
     if (error) {
       console.error('Error fetching contacts:', error);
     } else {
@@ -22,13 +21,11 @@ export default function Contacts({ supabase }) {
 
   async function DeleteContact(contactId) {
     const { error } = await supabase.from('contacts').delete().eq('id', contactId);
-
     if (error) {
       console.error('Error deleting contact:', error);
     } else {
       getContacts(); // Refresh contacts after delete
     }
-
     setPopupContactId(null); // Close the popup after deletion
   }
 
