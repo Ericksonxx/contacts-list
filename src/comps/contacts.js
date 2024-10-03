@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function Contacts({ supabase }) {
   const [contacts, setContacts] = useState([]);
-  const [popupContactId, setPopupContactId] = useState(null); // State to track the contact's popup
+  const [popupContactId, setPopupContactId] = useState(null); 
 
   useEffect(() => {
     getContacts();
@@ -24,14 +24,16 @@ export default function Contacts({ supabase }) {
     if (error) {
       console.error('Error deleting contact:', error);
     } else {
-      getContacts(); // Refresh contacts after delete
+      getContacts();
     }
-    setPopupContactId(null); // Close the popup after deletion
+    setPopupContactId(null); 
   }
 
   return (
     <div>
-      <h1>Contacts</h1>
+      <div className="font-semibold text-2xl text-gray-300 mb-6">
+        <h1>Contacts</h1>
+      </div>
       {contacts.map((contact) => (
         <div key={contact.id} className="bg-gray-800 p-4 mb-4 w-full text-gray-200">
           <div className="flex justify-end">
@@ -42,10 +44,10 @@ export default function Contacts({ supabase }) {
                   : 'bg-yellow-600 px-2 rounded-full text-xs font-semibold mx-2'
               }
             >
-              <p>{contact.worked_with ? 'HAVE' : 'NOT'} WORKED WITH</p>
+              <button>{contact.worked_with ? 'HAVE' : 'NOT'} WORKED WITH</button>
             </div>
             <button
-              onClick={() => setPopupContactId(contact.id)} // Open the popup for this specific contact
+              onClick={() => setPopupContactId(contact.id)} 
               className="bg-red-600 px-2 rounded-full text-xs font-semibold"
             >
               DELETE
@@ -60,7 +62,7 @@ export default function Contacts({ supabase }) {
             | {contact.phone}
             <p>{contact.email}</p>
           </div>
-          {popupContactId === contact.id ? ( // Only show popup for this contact
+          {popupContactId === contact.id ? ( 
             <div>
               <div className="fixed inset-0 bg-black bg-opacity-60 z-50"></div>
               <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -83,6 +85,12 @@ export default function Contacts({ supabase }) {
           ) : null}
         </div>
       ))}
+      {!contacts || contacts.length === 0  ? (
+            <div className="mt-4">
+              <p>No contacts</p>
+            </div>
+      ) : null}
+      
     </div>
   );
 }

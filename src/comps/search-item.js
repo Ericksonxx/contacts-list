@@ -65,7 +65,7 @@ export default function SearchItem ({company, MAPS_KEY, supabase}) {
     return(
       <div key={company.id} className="w-full">
         {blacklisted ? 
-          <div key={company.id} className="bg-gray-800 p-4 mb-4 w-full">
+          <div key={company.id} className="bg-gray-800 border-2  border-gray-800 hover:border-gray-600 p-4 mb-4 w-full">
               <div className="flex justify-end">
                 {contactList ? null : <button className="bg-blue-600 px-2 rounded-full text-sm font-semibold w-fit " onClick={() => addContact()}>+ ADD TO CONTACTS</button>}
               </div>

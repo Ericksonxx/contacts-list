@@ -26,7 +26,9 @@ export default function BlackList({supabase}) {
 
     return(
         <div>
-            <p>BLACKLIST</p>
+            <div className="font-semibold text-2xl text-gray-300 mb-6 text-left w-full">
+                <h1>Black List</h1>
+            </div>
             <div>
                 {blackcontact.map((contact) => (
                     <div className="bg-gray-800 p-4 mb-4 w-full">
