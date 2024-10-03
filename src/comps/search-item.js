@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function SearchItem ({company, MAPS_KEY, supabase}) {
+export default function SearchItem ({company, MAPS_KEY, supabase, update, setUpdate}) {
 
     const [details, setDetails] = useState([]);
     const [contactList, setContactList] = useState([]);
@@ -33,6 +33,11 @@ export default function SearchItem ({company, MAPS_KEY, supabase}) {
                 website: details.website 
             },])
             .select()
+            setUpdate(update + 1)
+
+            if(data != null) {
+              setContactList(true)
+            }
     }
 
     async function addBlacklist() {

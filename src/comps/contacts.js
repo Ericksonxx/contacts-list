@@ -30,10 +30,11 @@ export default function Contacts({ supabase }) {
   }
 
   return (
-    <div>
-      <div className="font-semibold text-2xl text-gray-300 mb-6">
+    <div className="bg-gray-900 text-white p-4">
+      <div className="font-semibold text-2xl text-gray-300 mb-6 ">
         <h1>Contacts</h1>
       </div>
+      <div className="grid grid-cols-2 gap-4 bg-gray-900 h-[80vh] overflow-scroll">
       {contacts.map((contact) => (
         <div key={contact.id} className="bg-gray-800 p-4 mb-4 w-full text-gray-200">
           <div className="flex justify-end">
@@ -85,6 +86,7 @@ export default function Contacts({ supabase }) {
           ) : null}
         </div>
       ))}
+      </div>
       {!contacts || contacts.length === 0  ? (
             <div className="mt-4">
               <p>No contacts</p>

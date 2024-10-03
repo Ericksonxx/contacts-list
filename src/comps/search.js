@@ -6,8 +6,13 @@ export default function Search ({supabase}) {
   const [city, setCity] = useState('');
   const [signageCompanies, setSignageCompanies] = useState([]);
   const [input, setInput] = useState();
+  const [update, setUpdate] = useState(0);
 
   const MAPS_KEY = process.env.REACT_APP_MAPS_KEY
+
+  useEffect(() => {
+    getSignageCompanies();
+  },[update])
 
   const getSignageCompanies = async () => {
     try {
@@ -46,7 +51,14 @@ export default function Search ({supabase}) {
       </div>
       <div className="flex flex-col items-center bg-gray-900 text-white p-4 overflow-scroll w-full">
         {signageCompanies.map((company) => (
-          <SearchItem key={company.id} company={company} MAPS_KEY={MAPS_KEY} supabase={supabase} />
+          <SearchItem 
+            key={company.id} 
+            company={company} 
+            MAPS_KEY={MAPS_KEY} 
+            supabase={supabase}
+            update={update}
+            setUpdate={setUpdate}
+          />
         ))}
       </div>
     </div>
